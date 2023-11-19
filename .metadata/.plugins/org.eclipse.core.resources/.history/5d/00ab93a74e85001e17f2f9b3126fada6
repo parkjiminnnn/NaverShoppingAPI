@@ -1,0 +1,29 @@
+
+.shopimg {
+  width: 100px;
+  height: 100px;
+  
+}
+ .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    right: 200;
+    top: 0;
+    width: 50%;
+    height: 50%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding-top: 60px;
+}
+
+.close {
+    color: #000000;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    right: 20px; /* 수정: position: fixed 제거 */
+    top: 20px;
+}
+
+ 

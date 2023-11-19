@@ -1,0 +1,3 @@
+INDEX VERSION 1.131
+C:\Users\¡ˆπŒ\πŸ≈¡ »≠∏È\NaverShop\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2938873478.index
+\Shop\src

@@ -1,0 +1,40 @@
+
+.shopimg {
+  width: 100px;
+  height: 100px;
+  
+}
+ .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    right: 300;
+    top: 0;
+    width: 50%;
+    height: 50%;
+    overflow: auto;
+    background-color: #ffffff;
+    padding-top: 60px;
+}
+/* 모달 내용 스타일 */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 10px; /* 테두리를 둥글게 만듦 */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.close {
+    color: #000000;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    right: 20px; 
+    top: 20px;
+}
+
+ 

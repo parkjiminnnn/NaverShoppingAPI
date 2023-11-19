@@ -1,0 +1,8 @@
+package shop;
+
+import java.awt.List;
+import shop.NaverShop;
+
+class DataList {
+	List<Data> items;
+}

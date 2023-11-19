@@ -1,0 +1,60 @@
+package shop;
+
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/search")
+public class SearchServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String clientId = "iE6XydOWfru4IEU74MXl"; // 애플리케이션 클라이언트 아이디
+        String clientSecret = "m9Am_QmO2k"; // 애플리케이션 클라이언트 시크릿
+
+        // 사용자가 입력한 검색어 가져오기
+        String searchTerm = request.getParameter("searchTerm");
+
+        // 검색어가 비어있지 않다면 API 호출
+        if (searchTerm != null && !searchTerm.isEmpty()) {
+            String text = URLEncoder.encode(searchTerm, "UTF-8");
+
+            String apiURL = "https://openapi.naver.com/v1/search/shop?query=" + text;
+            Map<String, String> requestHeaders = new HashMap<>();
+            requestHeaders.put("X-Naver-Client-Id", clientId);
+            requestHeaders.put("X-Naver-Client-Secret", clientSecret);
+            String responseBody = get(apiURL, requestHeaders);
+
+            // items 배열 파싱
+            List<Data> searchResults = parseItemsArray(responseBody);
+
+            // 검색 결과를 request에 속성으로 추가
+            request.setAttribute("searchResults", searchResults);
+        }
+
+        // JSP 페이지로 포워딩
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/searchResults.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private List<Data> parseItemsArray(String responseBody) {
+		 return null;
+        // 이전과 동일한 parseItemsArray 메소드 구현
+    }
+
+    private String get(String apiUrl, Map<String, String> requestHeaders) {
+		return apiUrl;
+        // 이전과 동일한 get 메소드 구현
+    }
+
+    // 나머지 메소드들도 이전과 동일
+}

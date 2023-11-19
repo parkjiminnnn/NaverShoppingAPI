@@ -1,0 +1,32 @@
+
+.shopimg {
+  width: 100px;
+  height: 100px;
+  
+}
+ .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    right: 0;
+    top: 0;
+    border: 1px solid #888;
+    width: 30%;
+    height: 70%;
+    overflow: auto;
+    background-color: #ffffff;
+    padding-top: 60px;
+    border-radius: 5px;
+}
+
+
+.close {
+    color: #000000;
+	position: absolute; 
+    font-size: 28px;
+    font-weight: bold;
+    right: 20px; 
+    top: 20px;
+}
+
+ 

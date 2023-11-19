@@ -1,0 +1,9 @@
+package shop;
+
+public class Data {
+	String category2;
+	String image;
+	String mallName;
+	String lprice;
+	String hprice;
+}

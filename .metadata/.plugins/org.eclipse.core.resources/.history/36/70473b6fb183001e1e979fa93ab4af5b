@@ -1,0 +1,34 @@
+package shop;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+
+public class DBconnect {
+	public DBconnect() {
+		try{
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/navershop_db", "root", "1234");
+			PreparedStatement stmt = conn.prepareStatement("insert into navershop values(?,?,?,?,?,?,?,?,?,?,?)");
+			stmt.setString(parameterIndex, 1);
+			stmt.setString(parameterIndex, 1);
+			stmt.setString(parameterIndex, 1);
+			stmt.setString(parameterIndex, 1);
+			stmt.setString(parameterIndex, 1);
+			stmt.setString(parameterIndex, 1);
+			stmt.setString(parameterIndex, 1);
+			stmt.setString(parameterIndex, 1);
+			stmt.setString(parameterIndex, 1);
+			stmt.setString(parameterIndex, 1);
+			stmt.setString(parameterIndex, 1);
+		
+			stmt.close();
+			conn.close();
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+
+}

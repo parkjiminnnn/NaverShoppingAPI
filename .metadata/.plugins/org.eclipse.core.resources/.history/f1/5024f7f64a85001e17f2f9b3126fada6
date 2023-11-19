@@ -1,0 +1,19 @@
+
+.shopimg {
+  width: 100px;
+  height: 100px;
+  
+}
+ .modal {
+        display: none; 
+        position: fixed;
+        z-index: 1;
+        left: 300;
+        top: 0;
+        width: 200px;
+        height:200px;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+        padding-top: 60px;
+    }

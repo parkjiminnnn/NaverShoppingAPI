@@ -1,0 +1,12 @@
+package shop;
+
+import java.util.List;
+import shop.Data;
+
+class DataList {
+	String lastBuildDate;
+	int total;
+	int start;
+	int display;
+	List<Data> items;
+}

@@ -1,0 +1,8 @@
+package shop;
+
+import java.util.List;
+import shop.Data;
+
+class DataList {
+	List<Data> items;
+}

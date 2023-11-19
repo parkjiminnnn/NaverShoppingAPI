@@ -1,0 +1,115 @@
+package shop;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class NaverShop {
+
+    public static void main(String[] args) {
+        String clientId = "iE6XydOWfru4IEU74MXl"; // 애플리케이션 클라이언트 아이디
+        String clientSecret = "m9Am_QmO2k"; // 애플리케이션 클라이언트 시크릿
+
+        String text = null;
+        try {
+            text = URLEncoder.encode("가방", "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException("검색어 인코딩 실패", e);
+        }
+
+        String apiURL = "https://openapi.naver.com/v1/search/shop?query=" + text;
+        Map<String, String> requestHeaders = new HashMap<>();
+        requestHeaders.put("X-Naver-Client-Id", clientId);
+        requestHeaders.put("X-Naver-Client-Secret", clientSecret);
+        String responseBody = get(apiURL, requestHeaders);
+
+        // items 배열 파싱
+        List<Data> itemsArray = parseItemsArray(responseBody);
+        System.out.println(itemsArray);
+    }
+
+    private static List<Data> parseItemsArray(String responseBody) {
+        JSONObject responseObject = new JSONObject(responseBody);
+        JSONArray itemsArray = responseObject.getJSONArray("items");
+
+        List<Data> dataList = new ArrayList<>();
+
+
+        for (int i = 0; i < itemsArray.length(); i++) {
+            JSONObject itemObject = itemsArray.getJSONObject(i);
+
+            Data data = new Data();
+            data.setTitle(itemObject.getString("title"));
+            data.setLink(itemObject.getString("link"));
+            data.setImage(itemObject.getString("image"));
+            data.setLprice(itemObject.getString("lprice"));
+            data.setHprice(itemObject.getString("hprice"));
+            data.setMallName(itemObject.getString("mallName"));
+            data.setProductId(itemObject.getString("productId"));  
+            data.setProductType(itemObject.getString("productType"));  
+            data.setBrand(itemObject.getString("brand"));
+            data.setMaker(itemObject.getString("maker"));
+            data.setCategory1(itemObject.getString("category1"));
+
+            dataList.add(data);
+        	
+        }
+
+        
+
+
+    private static String get(String apiUrl, Map<String, String> requestHeaders) {
+        HttpURLConnection con = connect(apiUrl);
+        try {
+            con.setRequestMethod("GET");
+            for (Map.Entry<String, String> header : requestHeaders.entrySet()) {
+                con.setRequestProperty(header.getKey(), header.getValue());
+            }
+
+            int responseCode = con.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                return readBody(con.getInputStream());
+            } else {
+                return readBody(con.getErrorStream());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("API 요청과 응답 실패", e);
+        } finally {
+            con.disconnect();
+        }
+    }
+
+    private static HttpURLConnection connect(String apiUrl) {
+        try {
+            URL url = new URL(apiUrl);
+            return (HttpURLConnection) url.openConnection();
+        } catch (MalformedURLException e) {
+            throw new RuntimeException("API URL이 잘못되었습니다. : " + apiUrl, e);
+        } catch (IOException e) {
+            throw new RuntimeException("연결이 실패했습니다. : " + apiUrl, e);
+        }
+    }
+
+    private static String readBody(InputStream body) {
+        InputStreamReader streamReader = new InputStreamReader(body);
+        try (BufferedReader lineReader = new BufferedReader(streamReader)) {
+            StringBuilder responseBody = new StringBuilder();
+            String line;
+            while ((line = lineReader.readLine()) != null) {
+                responseBody.append(line);
+            }
+            return responseBody.toString();
+        } catch (IOException e) {
+            throw new RuntimeException("API 응답을 읽는 데 실패했습니다.", e);
+        }
+    }
+}

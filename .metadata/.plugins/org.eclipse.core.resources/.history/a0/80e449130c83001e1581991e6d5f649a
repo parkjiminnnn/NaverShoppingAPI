@@ -1,0 +1,60 @@
+package shop;
+
+public class Data {
+	String title;
+	String link;
+	String image;
+	String lprice;
+	String hprice;
+	String mallName;
+	String productId;
+	String productType;
+	String brand;
+	String maker;
+	String category1;
+	public void setTitle(String string) {
+		
+	}
+	public void setLink(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void setImage(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void setLprice(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void setHprice(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void setMallName(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void setProductId(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void setProductType(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void setBrand(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void setMaker(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void setCategory1(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+}
